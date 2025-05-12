@@ -10,6 +10,21 @@ function convertToRoman(num) {
     };
 
   //your code here
+	let result = ""; // This will store the final Roman numeral
+
+  for (let i = 0; i < romanNumerals.length; i++) {
+    const symbol = romanNumerals[i][0]; // Roman symbol like 'M', 'D', 'C'
+    const value = romanNumerals[i][1];  // Numeric value like 1000, 500, 100
+
+    // Keep subtracting value from num and adding symbol to result
+    while (num >= value) {
+      result += symbol;  // Add symbol to result string
+      num -= value;      // Subtract value from num
+    }
+  }
+
+  return result; // Return the final Roman numeral
+}
 
 }
 // You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line

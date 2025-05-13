@@ -1,50 +1,31 @@
-n = int(input())
-json_object = {}
+function convertToRoman(num) {
+  const romanMap = [
+    ['M', 1000],
+    ['CM', 900],
+    ['D', 500],
+    ['CD', 400],
+    ['C', 100],
+    ['XC', 90],
+    ['L', 50],
+    ['XL', 40],
+    ['X', 10],
+    ['IX', 9],
+    ['V', 5],
+    ['IV', 4],
+    ['I', 1]
+  ];
 
-for _ in range(n):
-    key, value = input().split()
-    json_object[key] = value
+  let result = "";
 
-key_to_delete = input()
-
-if key_to_delete in json_object:
-    del json_object[key_to_delete]
-
-for key, value in json_object.items():
-    print(key, value)
-
-
-
-// Dont change the code below
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-let n = 0;
-let obj = {};
-let stringX = '';
-
-let count = 0;
-
-rl.on('line', (line) => {
-  count++;
-
-  if(count === 1) {
-    n = parseInt(line);
-  } else if(count > 1 && count <= n+1) {
-    let [key, val] = line.split(' ');
-    obj[key] = val;
-  } else if(count === n+2) {
-    stringX = line;
-    rl.close();
+  for (let [symbol, value] of romanMap) {
+    while (num >= value) {
+      result += symbol;
+      num -= value;
+    }
   }
-});
 
-rl.on('close', () => {
-  deleteProperty(obj, stringX)
-  for(let key in obj) {
-    console.log(${key} ${obj[key]});
-  }
-});
+  return result;
+}
+
+console.log(convertToRoman(36)); // Output: XXXVI
+module.exports = convertToRoman;
